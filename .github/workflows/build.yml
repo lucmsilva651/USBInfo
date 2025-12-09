@@ -10,12 +10,6 @@ jobs:
     runs-on: windows-latest
     continue-on-error: true
     steps:
-      - name: Checkout submodules
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: "recursive"
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -42,12 +36,6 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - name: Checkout submodules
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: "recursive"
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -74,12 +62,6 @@ jobs:
     runs-on: macos-latest
     continue-on-error: true
     steps:
-      - name: Checkout submodules
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: "recursive"
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
