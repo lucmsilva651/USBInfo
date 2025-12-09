@@ -1,0 +1,1 @@
+export const $ = (e) => document.getElementById(e);

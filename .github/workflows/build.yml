@@ -1,0 +1,97 @@
+name: USBInfo CI (nightly)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - run: npm install --force
+      - run: npm run make
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare build (Windows)
+        run: |
+          cd out/com.lucmsilva.usbinfo/make/squirrel.windows/x64/
+          del *.nupkg
+          del RELEASES
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: usbinfo-windows-nightly
+          path: out/com.lucmsilva.usbinfo/make/squirrel.windows/x64/
+          compression-level: 9
+
+  build-linux:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - run: npm install --force
+      - run: npm run make
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare build (Linux)
+        run: |
+          cd out/com.lucmsilva.usbinfo/make/
+          mv deb/x64/*.deb .
+          mv rpm/x64/*.rpm .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: usbinfo-linux-nightly
+          path: out/com.lucmsilva.usbinfo/make/
+          compression-level: 9
+
+  build-darwin:
+    runs-on: macos-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - run: npm install --force
+      - run: npm run make
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: usbinfo-darwin-nightly
+          path: out/com.lucmsilva.usbinfo/make/
+          compression-level: 9
