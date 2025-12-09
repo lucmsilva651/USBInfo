@@ -8,9 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 $("aboutAppBtn").addEventListener("click", () => {
-  const message = `${pkg.packageName} is © ${new Date().getFullYear()} ${pkg.author.name}.\n\nSource code:\n${pkg.repository.url}\n\nUsing Microsoft's Fluent Icons\nhttps://developer.microsoft.com/fluentui`;
+  const message = `${pkg.packageName} ${pkg.version}\n${pkg.description}\n\n© ${new Date().getFullYear()} ${pkg.author.name}.\n\nSource code:\n${pkg.repository.url}\n\nUsing Microsoft's Fluent Icons\nhttps://developer.microsoft.com/fluentui`;
   dialog("info", `About ${pkg.packageName}`, message);
 });
+
 function loadInfo(device) {
   return `
     <div class="card">
