@@ -185,6 +185,7 @@ if (!instanceLock) {
       isDialogOpen = true;
       try {
         return await dialog.showMessageBox(mainWindow, {
+          icon: appIcon,
           ...options
         });
       } finally {
