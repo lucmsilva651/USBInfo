@@ -18,7 +18,7 @@ function loadInfo(device) {
     <div class="card">
       <div class="status">
         <div class="status-left">
-          <div class="status-dot connected"></div>
+          <div class="status-dot"></div>
           <p>Device Connected</p>
         </div>
         <span id="reloadBtn" title="Reload">

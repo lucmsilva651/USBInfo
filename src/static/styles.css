@@ -59,6 +59,7 @@ main {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: hop 150ms cubic-bezier(.25,.75,.5,1);
 }
 
 .status,
@@ -84,16 +85,8 @@ main {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-}
-
-.status-dot.connected {
   background: #4caf50;
   box-shadow: 0 0 10px #4caf50;
-}
-
-.status-dot.disconnected {
-  background: #f44336;
-  box-shadow: 0 0 10px #f44336;
 }
 
 .info-grid {
@@ -130,4 +123,12 @@ main {
 .placeholder svg {
   width: 90px;
   height: 90px;
+  animation-delay: 50ms;
+  animation: hop 300ms cubic-bezier(.25,.75,.5,1);
+}
+
+@keyframes hop {
+  0%   { transform: translateY(0) scale(1); }
+  30%  { transform: translateY(-6px) scale(1.02, 0.98); }
+  100% { transform: translateY(0) scale(1); }
 }
