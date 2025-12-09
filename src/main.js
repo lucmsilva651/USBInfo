@@ -6,7 +6,7 @@ const { usb } = require('usb');
 
 if (require("electron-squirrel-startup")) return;
 
-const appIcon = nativeImage.createFromPath(path.join(__dirname, "icons", "icon.png"));
+const appIcon = nativeImage.createFromPath(path.join(__dirname, "icons", "icon@64x.png"));
 const instanceLock = app.requestSingleInstanceLock();
 
 let win;
