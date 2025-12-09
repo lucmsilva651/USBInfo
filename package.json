@@ -7,6 +7,7 @@
   "category": ["Utility", "System"],
   "description": "See basic information about a connected USB device",
   "macCategory": "public.app-category.utilities",
+  "buildIdentifier": "com.lucmsilva.usbinfo",
   "repository": {
     "type": "git",
     "url": "https://github.com/lucmsilva651/USBInfo.git"
