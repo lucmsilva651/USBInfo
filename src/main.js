@@ -17,9 +17,9 @@ function createWindow() {
     autoplayPolicy: "no-user-gesture-required",
     ...(is.dev ? {} : { devTools: false }),
     contextIsolation: true,
-    nodeIntegration: true,
+    nodeIntegration: false,
     spellcheck: false,
-    sandbox: false
+    sandbox: true
   };
 
   const titleBarOverlay = {
