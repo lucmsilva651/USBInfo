@@ -69,8 +69,10 @@ main {
 }
 
 .status,
-.status-left {
+.status-left,
+.status-right {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
 }
@@ -95,6 +97,15 @@ main {
   box-shadow: 0 0 10px #4caf50;
 }
 
+.status-right svg {
+  width: 24px;
+  height: 24px;
+}
+
+.status-right svg:hover {
+  cursor: pointer;
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: 110px 1fr;
@@ -111,11 +122,6 @@ main {
   color: #ababab;
   word-break: break-all;
   user-select: text;
-}
-
-.card #reloadBtn {
-  width: 24px;
-  height: 24px;
 }
 
 .placeholder {

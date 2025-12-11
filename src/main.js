@@ -3,6 +3,7 @@ const { is, platform } = require("@electron-toolkit/utils");
 const pkg = require("../package.json");
 const path = require("node:path");
 const { usb } = require('usb');
+const fs = require('node:fs');
 
 if (require("electron-squirrel-startup")) return;
 
@@ -195,6 +196,26 @@ if (!instanceLock) {
 
     ipcMain.handle("open", (_, url) => {
       return shell.openExternal(url);
+    });
+
+    ipcMain.handle("export", async (_, data, manufacturer, name, id) => {
+      const { filePath, canceled } = await dialog.showSaveDialog({
+        defaultPath: `${manufacturer} ${name} ${id}.json`,
+        filters: [{ name: "JSON", extensions: ["json"] }]
+      });
+
+      if (canceled || !filePath) {
+        return { success: false, error: "Operation cancelled" };
+      }
+
+      try {
+        const json = JSON.stringify(data, null, 2);
+        fs.writeFileSync(filePath, json, "utf-8");
+
+        return { success: true, path: filePath };
+      } catch (err) {
+        return { success: false, error: err.message };
+      }
     });
   });
 }
