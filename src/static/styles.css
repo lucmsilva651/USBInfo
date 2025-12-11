@@ -25,7 +25,13 @@ body {
   top: 0;
 }
 
-.titlebar span {
+.titlebar .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.titlebar .buttons span {
   width: 45px;
   height: 2.25rem;
   display: flex;
@@ -35,11 +41,11 @@ body {
   -webkit-app-region: no-drag;
 }
 
-.titlebar span:hover {
+.titlebar .buttons span:hover {
   background-color: #ffffff30;
 }
 
-.titlebar span svg {
+.titlebar .buttons span svg {
   width: 16px;
   height: 16px;
 }

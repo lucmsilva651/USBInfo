@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray, nativeImage, dialog, ipcMain } = require("electron/main");
+const { app, BrowserWindow, Menu, Tray, nativeImage, shell, dialog, ipcMain } = require("electron/main");
 const { is, platform } = require("@electron-toolkit/utils");
 const pkg = require("../package.json");
 const path = require("node:path");
@@ -180,7 +180,7 @@ if (!instanceLock) {
     });
 
     let isDialogOpen = false;
-    ipcMain.handle("dialog", async (event, options) => {
+    ipcMain.handle("dialog", async (_, options) => {
       if (isDialogOpen) return;
       isDialogOpen = true;
       try {
@@ -191,6 +191,10 @@ if (!instanceLock) {
       } finally {
         isDialogOpen = false;
       }
+    });
+
+    ipcMain.handle("open-ext", (_, url) => {
+      return shell.openExternal(url);
     });
   });
 }
