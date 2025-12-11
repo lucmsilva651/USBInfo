@@ -67,12 +67,18 @@ window.usb.onConnected((device) => {
   $("reloadBtn").addEventListener("click", () => {
     loadInfo(device);
   });
-  $("exportBtn").addEventListener("click", () => {
+  $("exportBtn").addEventListener("click", async () => {
     const x = device;
     const y = device.manufacturer || "";
     const z = device.product || "";
     const a = `0x${device.deviceDescriptor.idProduct.toString(16).padStart(4, '0')}`;
-    window.usb.exportData(x, y, z, a);
+    const result = await window.usb.exportData(x, y, z, a);
+    
+    if (result.success) {
+      dialog("info", "File saved", "File saved in:\n" + result.path);
+    } else {
+      dialog("info", "Error while saving", "There was a error while saving.\n\n" + result.error);
+    }
   });
 });
 
