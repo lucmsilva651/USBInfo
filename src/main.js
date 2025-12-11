@@ -193,7 +193,7 @@ if (!instanceLock) {
       }
     });
 
-    ipcMain.handle("open-ext", (_, url) => {
+    ipcMain.handle("open", (_, url) => {
       return shell.openExternal(url);
     });
   });

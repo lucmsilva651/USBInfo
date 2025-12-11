@@ -7,5 +7,5 @@ contextBridge.exposeInMainWorld('usb', {
 
 contextBridge.exposeInMainWorld("api", {
   alert: (options) => ipcRenderer.invoke("dialog", options),
-  openExt: (url) => ipcRenderer.invoke("open-ext", url),
+  openExt: (url) => ipcRenderer.invoke("open", url),
 });
